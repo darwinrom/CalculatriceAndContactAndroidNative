@@ -1,4 +1,4 @@
-package com.example.myfirstapp;
+﻿package com.example.myfirstapp;
 
 import java.util.Arrays;
 import java.util.Stack;
@@ -244,7 +244,7 @@ class StringToExpressionFix {
                                 break;
                             case '%':
 //
-                                num = (num2-(num2 % num1))/num1;
+                                num = (num2 % num1);
                                 S.pop();
                                 break;
 
