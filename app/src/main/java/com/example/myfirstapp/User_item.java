@@ -1,7 +1,10 @@
 package com.example.myfirstapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.content.Intent;
@@ -45,17 +48,22 @@ public class User_item extends AppCompatActivity {
     }
 
 
-
-
     public  void makeCall(View view) {
         int id = view.getId();
         if(id==R.id.btnCall){
             TextView tel = (TextView) findViewById(R.id.user_phone);
-            Intent i = new Intent(Intent.ACTION_DIAL);
+            Intent callIntent =new Intent(Intent.ACTION_CALL);
             String p = "tel:" + tel.getText().toString();
-            i.setData(Uri.parse(p));
-            startActivity(i);
+            callIntent.setData(Uri.parse(p));
+            if (ActivityCompat.checkSelfPermission(User_item.this,
+                    Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+
+                return;
+            }
+            startActivity(callIntent);
 
       }
     }
+
+
 }
